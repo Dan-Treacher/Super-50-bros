@@ -16,7 +16,8 @@ function LevelMaker.generate(width, height)
     local objects = {}
 
     local tileID = TILE_ID_GROUND
-    
+    local newVar
+
     -- whether we should draw our tiles with toppers
     local topper = true
     local tileset = math.random(20)
