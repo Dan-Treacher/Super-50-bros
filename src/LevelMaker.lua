@@ -21,6 +21,8 @@ function LevelMaker.generate(width, height)
     local topper = true
     local tileset = math.random(20)
     local topperset = math.random(20)
+    local spawnedLock = false
+    local spawnedKey = false
 
     -- insert blank tables into tiles for later access
     for x = 1, height do
