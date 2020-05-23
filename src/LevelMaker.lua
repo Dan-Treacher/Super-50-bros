@@ -21,6 +21,9 @@ function LevelMaker.generate(width, height)
     local topper = true
     local tileset = math.random(20)
     local topperset = math.random(20)
+    local spawnedLock = false
+    local spawnedKey = false
+    local lockAndKeyColour = math.random(4)  -- Randomised colour of the lock and key pair
 
     -- insert blank tables into tiles for later access
     for x = 1, height do
@@ -73,6 +76,62 @@ function LevelMaker.generate(width, height)
                     )
                 end
                 
+
+                -- Chance to generate key on pillar
+                if spawnedKey == false and math.random(10) == 1 then
+                    table.insert(objects,
+                        GameObject {
+                            texture = 'keys-and-locks',
+                            x = (x - 1) * TILE_SIZE,
+                            y = (4 - 1) * TILE_SIZE,
+                            width = 16,
+                            height = 16,
+                            frame = LOCK_AND_KEY_IDs[lockAndKeyColour],
+                            collidable = true,
+                            consumable = true,
+                            solid = false,
+                            onConsume = function(player, object)
+                                gSounds['pickup']:play()
+                                player.hasKey = true
+                            end
+                        }
+                    )
+                    spawnedKey = true
+                end
+
+
+                -- Chance to generate lock on pillar
+                if spawnedLock == false and math.random(10) == 1 then
+                    table.insert(objects,
+                        GameObject {
+                            texture = 'keys-and-locks',
+                            x = (x - 1) * TILE_SIZE,
+                            y = (4 - 1) * TILE_SIZE,
+                            width = 16,
+                            height = 16,
+                            frame = LOCK_AND_KEY_IDs[lockAndKeyColour+4],
+                            collidable = true,
+                            solid = true,
+                            consumable = false,
+                            hit = false,
+                            
+                            onCollide = function(obj, player)
+                                -- if the player has the key, unlock the lock
+                                if not obj.hit then
+                                    if player.hasKey == true then
+                                        gSounds['pickup']:play()
+                                        obj.unlocked = true
+                                    end
+                                else
+                                    gSounds['empty-block']:play()
+                                end
+                                obj.hit = true
+                            end
+                        }
+                    )
+                    spawnedLock = true
+                end
+
                 -- pillar tiles
                 tiles[5][x] = Tile(x, 5, tileID, topper, tileset, topperset)
                 tiles[6][x] = Tile(x, 6, tileID, nil, tileset, topperset)
@@ -91,7 +150,67 @@ function LevelMaker.generate(width, height)
                         collidable = false
                     }
                 )
+
+
+            -- Chance to generate key
+            elseif spawnedKey == false and math.random(10) == 1 then
+                table.insert(objects,
+                    GameObject {
+                        texture = 'keys-and-locks',
+                        x = (x - 1) * TILE_SIZE,
+                        y = (6 - 1) * TILE_SIZE,
+                        width = 16,
+                        height = 16,
+                        frame = LOCK_AND_KEY_IDs[lockAndKeyColour],
+                        collidable = true,
+                        consumable = true,
+                        solid = false,
+                        onConsume = function(player, object)
+                            gSounds['pickup']:play()
+                            player.hasKey = true
+                        end
+                    }
+                )
+                spawnedKey = true
+
+
+            -- Chance to generate lock
+            elseif spawnedLock == false and math.random(10) == 1 then
+                table.insert(objects,
+                    GameObject {
+                        texture = 'keys-and-locks',
+                        x = (x - 1) * TILE_SIZE,
+                        y = (6 - 1) * TILE_SIZE,
+                        width = 16,
+                        height = 16,
+                        frame = LOCK_AND_KEY_IDs[lockAndKeyColour+4],
+                        collidable = true,
+                        solid = true,
+                        consumable = false,
+                        hit = false,
+                        
+                        onCollide = function(obj, player)
+                            -- if the player has the key, unlock the lock
+                            if not obj.hit then
+                                if player.hasKey == true then
+                                    gSounds['pickup']:play()
+                                    obj.unlocked = true
+                                end
+                            else
+                                gSounds['empty-block']:play()
+                            end
+                            obj.hit = true
+                        end
+                    }
+                )
+                spawnedLock = true
             end
+
+
+            
+
+
+            
 
             -- chance to spawn a block
             if math.random(10) == 1 then
