@@ -86,12 +86,8 @@ GEMS = {
     1, 2, 3, 4, 5, 6, 7, 8
 }
 
-KEY_IDs = {
-    1, 3, 5, 7
-}
-
-LOCK_IDs = {
-    2, 4, 6, 8
+LOCK_AND_KEY_IDs = {
+    1, 2, 3, 4, 5, 6, 7, 8
 }
 
 JUMP_BLOCKS = {}

@@ -80,17 +80,20 @@ function LevelMaker.generate(width, height)
                 -- Chance to generate key on pillar
                 if spawnedKey == false and math.random(10) == 1 then
                     table.insert(objects,
-                    GameObject {
-                        texture = 'keys-and-locks',
-                        x = (x - 1) * TILE_SIZE,
-                        y = (4 - 1) * TILE_SIZE,
-                        width = 16,
-                        height = 16,
-                        frame = KEY_IDs[lockAndKeyColour],
-                        collidable = true,
-                        consumable = true,
-                        solid = false
-                        -- Still need to add the custom function that triggers on pickup
+                        GameObject {
+                            texture = 'keys-and-locks',
+                            x = (x - 1) * TILE_SIZE,
+                            y = (4 - 1) * TILE_SIZE,
+                            width = 16,
+                            height = 16,
+                            frame = LOCK_AND_KEY_IDs[lockAndKeyColour],
+                            collidable = true,
+                            consumable = true,
+                            solid = false,
+                            onConsume = function(player, object)
+                                gSounds['pickup']:play()
+                                player.hasKey = true
+                            end
                         }
                     )
                     spawnedKey = true
@@ -100,17 +103,17 @@ function LevelMaker.generate(width, height)
                 -- Chance to generate lock on pillar
                 if spawnedLock == false and math.random(10) == 1 then
                     table.insert(objects,
-                    GameObject {
-                        texture = 'keys-and-locks',
-                        x = (x - 1) * TILE_SIZE,
-                        y = (4 - 1) * TILE_SIZE,
-                        width = 16,
-                        height = 16,
-                        frame = LOCK_IDs[lockAndKeyColour+1],
-                        collidable = true,
-                        consumable = true,
-                        solid = false
-                        -- Still need to add the custom function that triggers on pickup
+                        GameObject {
+                            texture = 'keys-and-locks',
+                            x = (x - 1) * TILE_SIZE,
+                            y = (4 - 1) * TILE_SIZE,
+                            width = 16,
+                            height = 16,
+                            frame = LOCK_AND_KEY_IDs[lockAndKeyColour+4],
+                            collidable = true,
+                            consumable = true,
+                            solid = false
+                            -- Still need to add the custom function that triggers on pickup
                         }
                     )
                     spawnedLock = true
@@ -139,17 +142,20 @@ function LevelMaker.generate(width, height)
             -- Chance to generate key
             elseif spawnedKey == false and math.random(10) == 1 then
                 table.insert(objects,
-                GameObject {
-                    texture = 'keys-and-locks',
-                    x = (x - 1) * TILE_SIZE,
-                    y = (6 - 1) * TILE_SIZE,
-                    width = 16,
-                    height = 16,
-                    frame = KEY_IDs[lockAndKeyColour],
-                    collidable = true,
-                    consumable = true,
-                    solid = false
-                    -- Still need to add the custom function that triggers on pickup
+                    GameObject {
+                        texture = 'keys-and-locks',
+                        x = (x - 1) * TILE_SIZE,
+                        y = (6 - 1) * TILE_SIZE,
+                        width = 16,
+                        height = 16,
+                        frame = LOCK_AND_KEY_IDs[lockAndKeyColour],
+                        collidable = true,
+                        consumable = true,
+                        solid = false,
+                        onConsume = function(player, object)
+                            gSounds['pickup']:play()
+                            player.hasKey = true
+                            end
                     }
                 )
                 spawnedKey = true
@@ -158,17 +164,16 @@ function LevelMaker.generate(width, height)
             -- Chance to generate lock
             elseif spawnedLock == false and math.random(10) == 1 then
                 table.insert(objects,
-                GameObject {
-                    texture = 'keys-and-locks',
-                    x = (x - 1) * TILE_SIZE,
-                    y = (6 - 1) * TILE_SIZE,
-                    width = 16,
-                    height = 16,
-                    frame = LOCK_IDs[lockAndKeyColour+1],
-                    collidable = true,
-                    consumable = true,
-                    solid = false
-                    -- Still need to add the custom function that triggers on pickup
+                    GameObject {
+                        texture = 'keys-and-locks',
+                        x = (x - 1) * TILE_SIZE,
+                        y = (6 - 1) * TILE_SIZE,
+                        width = 16,
+                        height = 16,
+                        frame = LOCK_AND_KEY_IDs[lockAndKeyColour+4],
+                        collidable = true,
+                        consumable = true,
+                        solid = false,
                     }
                 )
                 spawnedLock = true
