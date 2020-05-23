@@ -112,16 +112,20 @@ function LevelMaker.generate(width, height)
                             frame = LOCK_AND_KEY_IDs[lockAndKeyColour+4],
                             collidable = true,
                             solid = true,
-                            unlocked = false,
+                            consumable = true,
+                            hit = false,
                             
-                            onCollide = function(obj)
+                            onConsume = function(obj)
                                 -- if the player has the key, unlock the lock
-                                if not obj.unlocked and player.hasKey == true then
-                                    gSounds['pickup']:play()
-                                    obj.unlocked = true
+                                if not obj.hit then
+                                    if player.hasKey == true then
+                                        gSounds['pickup']:play()
+                                        obj.unlocked = true
+                                    end
                                 else
                                     gSounds['empty-block']:play()
                                 end
+                                obj.hit = true
                             end
                         }
                     )
@@ -164,7 +168,7 @@ function LevelMaker.generate(width, height)
                         onConsume = function(player, object)
                             gSounds['pickup']:play()
                             player.hasKey = true
-                            end
+                        end
                     }
                 )
                 spawnedKey = true
@@ -182,16 +186,20 @@ function LevelMaker.generate(width, height)
                         frame = LOCK_AND_KEY_IDs[lockAndKeyColour+4],
                         collidable = true,
                         solid = true,
-                        unlocked = false,
+                        consumable = true,
+                        hit = false,
                         
-                        onCollide = function(obj)
+                        onConsume = function(obj)
                             -- if the player has the key, unlock the lock
-                            if not obj.unlocked and player.hasKey == true then
-                                gSounds['pickup']:play()
-                                obj.unlocked = true
+                            if not obj.hit then
+                                if player.hasKey == true then
+                                    gSounds['pickup']:play()
+                                    obj.unlocked = true
+                                end
                             else
                                 gSounds['empty-block']:play()
                             end
+                            obj.hit = true
                         end
                     }
                 )
