@@ -111,9 +111,18 @@ function LevelMaker.generate(width, height)
                             height = 16,
                             frame = LOCK_AND_KEY_IDs[lockAndKeyColour+4],
                             collidable = true,
-                            consumable = true,
-                            solid = false
-                            -- Still need to add the custom function that triggers on pickup
+                            solid = true,
+                            unlocked = false,
+                            
+                            onCollide = function(obj)
+                                -- if the player has the key, unlock the lock
+                                if not obj.unlocked and player.hasKey == true then
+                                    gSounds['pickup']:play()
+                                    obj.unlocked = true
+                                else
+                                    gSounds['empty-block']:play()
+                                end
+                            end
                         }
                     )
                     spawnedLock = true
@@ -172,8 +181,18 @@ function LevelMaker.generate(width, height)
                         height = 16,
                         frame = LOCK_AND_KEY_IDs[lockAndKeyColour+4],
                         collidable = true,
-                        consumable = true,
-                        solid = false,
+                        solid = true,
+                        unlocked = false,
+                        
+                        onCollide = function(obj)
+                            -- if the player has the key, unlock the lock
+                            if not obj.unlocked and player.hasKey == true then
+                                gSounds['pickup']:play()
+                                obj.unlocked = true
+                            else
+                                gSounds['empty-block']:play()
+                            end
+                        end
                     }
                 )
                 spawnedLock = true
