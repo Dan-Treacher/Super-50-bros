@@ -23,6 +23,7 @@ function LevelMaker.generate(width, height)
     local topperset = math.random(20)
     local spawnedLock = false
     local spawnedKey = false
+    local lockAndKeyColour = math.random(4)  -- Randomised colour of the lock and key pair
 
     -- insert blank tables into tiles for later access
     for x = 1, height do
@@ -107,7 +108,7 @@ function LevelMaker.generate(width, height)
                         y = (6 - 1) * TILE_SIZE,
                         width = 16,
                         height = 16,
-                        frame = KEY_IDs[math.random(#KEY_IDs)],
+                        frame = KEY_IDs[lockAndKeyColour],
                         collidable = true,
                         consumable = true,
                         solid = false
@@ -118,6 +119,27 @@ function LevelMaker.generate(width, height)
                 end
             end
 
+
+            -- Chance to generate lock
+            if spawnedLock == false then
+                if math.random(10) == 1 then
+                    table.insert(objects,
+                    GameObject {
+                        texture = 'keys-and-locks',
+                        x = (x - 1) * TILE_SIZE,
+                        y = (6 - 1) * TILE_SIZE,
+                        width = 16,
+                        height = 16,
+                        frame = LOCK_IDs[lockAndKeyColour],
+                        collidable = true,
+                        consumable = true,
+                        solid = false
+                        -- Still need to add the custom function that triggers on pickup
+                        }
+                    )
+                    spawnedLock = true
+                end
+            end
 
             -- chance to spawn a block
             if math.random(10) == 1 then

@@ -90,7 +90,7 @@ KEY_IDs = {
     1, 3, 5, 7
 }
 
-LOCKS_IDs = {
+LOCK_IDs = {
     2, 4, 6, 8
 }
 
