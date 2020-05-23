@@ -57,6 +57,7 @@ function PlayerWalkingState:update(dt)
         end
     end
 
+
     if love.keyboard.wasPressed('space') then
         self.player:changeState('jump')
     end

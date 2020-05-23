@@ -112,10 +112,10 @@ function LevelMaker.generate(width, height)
                             frame = LOCK_AND_KEY_IDs[lockAndKeyColour+4],
                             collidable = true,
                             solid = true,
-                            consumable = true,
+                            consumable = false,
                             hit = false,
                             
-                            onConsume = function(obj)
+                            onCollide = function(obj, player)
                                 -- if the player has the key, unlock the lock
                                 if not obj.hit then
                                     if player.hasKey == true then
@@ -186,10 +186,10 @@ function LevelMaker.generate(width, height)
                         frame = LOCK_AND_KEY_IDs[lockAndKeyColour+4],
                         collidable = true,
                         solid = true,
-                        consumable = true,
+                        consumable = false,
                         hit = false,
                         
-                        onConsume = function(obj)
+                        onCollide = function(obj, player)
                             -- if the player has the key, unlock the lock
                             if not obj.hit then
                                 if player.hasKey == true then
