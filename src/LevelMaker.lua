@@ -93,7 +93,31 @@ function LevelMaker.generate(width, height)
                         collidable = false
                     }
                 )
+
+
             end
+
+            -- Chance to generate key
+            if spawnedKey == false then
+                if math.random(10) == 1 then
+                    table.insert(objects,
+                    GameObject {
+                        texture = 'keys-and-locks',
+                        x = (x - 1) * TILE_SIZE,
+                        y = (6 - 1) * TILE_SIZE,
+                        width = 16,
+                        height = 16,
+                        frame = KEY_IDs[math.random(#KEY_IDs)],
+                        collidable = true,
+                        consumable = true,
+                        solid = false
+                        -- Still need to add the custom function that triggers on pickup
+                        }
+                    )
+                    spawnedKey = true
+                end
+            end
+
 
             -- chance to spawn a block
             if math.random(10) == 1 then
