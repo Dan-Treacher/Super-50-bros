@@ -23,7 +23,7 @@ function LevelMaker.generate(width, height)
     local topperset = math.random(20)
     local spawnedLock = false
     local spawnedKey = false
-    local lockAndKeyColour = math.random(4)  -- Randomised colour of the lock and key pair
+    lockAndKeyColour = math.random(4)  -- Randomised colour of the lock and key pair
 
     -- insert blank tables into tiles for later access
     for x = 1, height do
