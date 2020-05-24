@@ -113,11 +113,16 @@ function LevelMaker.generate(width, height)
                             collidable = true,
                             hit = false,
                             solid = true,
-                            --unlocked = false,
-                            
+                            transitionAlpha = 255,
+                        
                             onCollide = function(object)
                                 object.solid = false
                                 gSounds['pickup']:play()
+                                -- Tween the alpha of the lock so it's disappearance looks nice
+                                Timer.tween(1, {
+                                [object] = {transitionAlpha = 0}
+                                })
+                            
                             end
                         }
                     )
@@ -179,17 +184,17 @@ function LevelMaker.generate(width, height)
                         collidable = true,
                         hit = false,
                         solid = true,
+                        transitionAlpha = 255,
                         --unlocked = false,
                         
                         onCollide = function(object)
                             object.solid = false
                             gSounds['pickup']:play()
-                            --[[
-                            Timer.tween(0.1, {
-                                [object] = {y = (blockHeight - 2) * TILE_SIZE}
+                            -- Tween the alpha of the lock so it's disappearance looks nice
+                            Timer.tween(1, {
+                            [object] = {transitionAlpha = 0}
                             })
-                            table.remove(objects, object)
-                            ]]
+                            
                         end
                     }
                 )
