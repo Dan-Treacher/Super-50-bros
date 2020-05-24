@@ -184,6 +184,12 @@ function LevelMaker.generate(width, height)
                         onCollide = function(object)
                             object.solid = false
                             gSounds['pickup']:play()
+                            --[[
+                            Timer.tween(0.1, {
+                                [object] = {y = (blockHeight - 2) * TILE_SIZE}
+                            })
+                            table.remove(objects, object)
+                            ]]
                         end
                     }
                 )
