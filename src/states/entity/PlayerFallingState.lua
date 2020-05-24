@@ -62,6 +62,9 @@ function PlayerFallingState:update(dt)
     for k, object in pairs(self.player.level.objects) do
         if object:collides(self.player) then
             if object.solid then
+                if self.player.hasKey then
+                    object.onCollide(object)
+                end
                 self.player.dy = 0
                 self.player.y = object.y - self.player.height
 

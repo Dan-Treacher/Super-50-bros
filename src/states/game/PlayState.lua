@@ -83,7 +83,7 @@ function PlayState:render()
     love.graphics.print(tostring(self.player.score), 4, 4)
 
     if self.player.hasKey then
-        love.graphics.draw(gTextures['keys-and-locks'], gFrames['keys-and-locks'][lockAndKeyColour], 34, 6)
+        love.graphics.draw(gTextures['keys-and-locks'], gFrames['keys-and-locks'][lockAndKeyColour], 36, 4)
     end
 
 end
