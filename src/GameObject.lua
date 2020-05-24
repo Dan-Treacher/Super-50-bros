@@ -22,6 +22,7 @@ function GameObject:init(def)
     self.onConsume = def.onConsume
     self.hit = def.hit
     self.unlocked = def.unlocked
+    self.transitionAlpha = def.transitionAlpha
 end
 
 function GameObject:collides(target)
@@ -34,5 +35,6 @@ function GameObject:update(dt)
 end
 
 function GameObject:render()
+    love.graphics.setColor(255, 255, 255, self.transitionAlpha)
     love.graphics.draw(gTextures[self.texture], gFrames[self.texture][self.frame], self.x, self.y)
 end
