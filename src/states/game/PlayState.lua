@@ -69,6 +69,10 @@ function PlayState:render()
     -- translate the entire view of the scene to emulate a camera
     love.graphics.translate(-math.floor(self.camX), -math.floor(self.camY))
     
+    if self.player.hasKey then
+        love.graphics.draw(gTextures['keys-and-locks'], gFrames['keys-and-locks'][1], 0, 0)
+    end
+
     self.level:render()
 
     self.player:render()

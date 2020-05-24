@@ -58,13 +58,25 @@ function PlayerWalkingState:update(dt)
         end
     end
 
+
+    -- Check side collisions whilst walking
+    if love.keyboard.isDown('left') then
+        self.player.direction = 'left'
+        self.player:checkLeftCollisions(dt)
+    elseif love.keyboard.isDown('right') then
+        self.player.direction = 'right'
+        self.player:checkRightCollisions(dt)
+    end
+
+
+--[[
     -- check if we've collided with any entities and die if so
     for k, entity in pairs(self.player.level.entities) do
         if entity:collides(self.player) then
             gSounds['death']:play()
         end
     end
-
+]]
 
     if love.keyboard.wasPressed('space') then
         self.player:changeState('jump')
