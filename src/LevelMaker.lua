@@ -112,7 +112,7 @@ function LevelMaker.generate(width, height)
                             frame = LOCK_AND_KEY_IDs[lockAndKeyColour+4],
                             collidable = true,
                             solid = true,
-                            consumable = false,
+                            --consumable = false,
                             hit = false,
                             
                             onCollide = function(obj, player)
@@ -186,7 +186,7 @@ function LevelMaker.generate(width, height)
                         frame = LOCK_AND_KEY_IDs[lockAndKeyColour+4],
                         collidable = true,
                         solid = true,
-                        consumable = false,
+                        --consumable = false,
                         hit = false,
                         
                         onCollide = function(obj, player)
