@@ -197,20 +197,21 @@ function LevelMaker.generate(width, height)
 
                             local flagpole = GameObject {
                                         texture = 'flags-and-poles',
-                                        x = (x - 1) * TILE_SIZE,
-                                        y = (blockHeight - 1) * TILE_SIZE - 4,
+                                        x = (x + 1) * TILE_SIZE,
+                                        y = (blockHeight - 2) * TILE_SIZE - 4,
                                         width = 16,
-                                        height = 48,
+                                        height = 16,
                                         frame = 2,
                                         collidable = false,
-                                        consumable = false,
+                                        consumable = true,  -- If consumable is true, then you have to define the onConsume function
+                                        -- but if consumable is true, the texture never appears...
                                         solid = false,
 
                                         -- gem has its own function to add to the player's score
-                                        --onConsume = function(player, object)
-                                        --    gSounds['pickup']:play()
-                                        --    player.score = player.score + 100
-                                        --end
+                                        onConsume = function(player, object)
+                                            gSounds['pickup']:play()
+                                            player.score = player.score + 1000
+                                        end
                                     }
                                     
                                     -- make the gem move up from the block and play a sound

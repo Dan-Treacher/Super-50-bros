@@ -82,19 +82,15 @@ function PlayState:render()
     love.graphics.setColor(255, 255, 255, 255)
     love.graphics.print(tostring(self.player.score), 4, 4)
 
+    -- If the player picks up they key, show the key symbol in the top corner next to the score
     if self.player.hasKey then
         love.graphics.draw(gTextures['keys-and-locks'], gFrames['keys-and-locks'][lockAndKeyColour], 36, 4)
     end
 
-    --if unlockedLock then
-        -- in StartState.lua the first level is 100 wide
-        -- also, the default ground height is 4 tiles
-        --love.graphics.draw(gTextures['flags-and-poles'], gFrames['poles'][1], 36, 4) -- 36, 4
-        --love.graphics.draw(gTextures['flags-and-poles'], gFrames['flags-and-poles'][1], 44, 4)
-        
-        --love.graphics.draw(gTextures['flags-and-poles'], gFrames['poles'][1], TILE_SIZE*99, VIRTUAL_HEIGHT-4*TILE_SIZE) -- 36, 4
-        --love.graphics.draw(gTextures['flags-and-poles'], gFrames['flags'][7], TILE_SIZE*99 + 8, VIRTUAL_HEIGHT-4*TILE_SIZE) -- 44, 4
-    --end
+    -- If the player has unlocked the lock, then show the flagpole symbol in the top corner
+    if unlockedLock then
+        love.graphics.draw(gTextures['flags-and-poles'], gFrames['flags-and-poles'][7], 55, 7)
+    end
 
 end
 
