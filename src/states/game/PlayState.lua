@@ -87,8 +87,13 @@ function PlayState:render()
     end
 
     --if unlockedLock then
-        love.graphics.draw(gTextures['flags-and-poles'], gFrames['poles'][1], 36, 4)
-        love.graphics.draw(gTextures['flags-and-poles'], gFrames['flags'][7], 44, 4)
+        -- in StartState.lua the first level is 100 wide
+        -- also, the default ground height is 4 tiles
+        --love.graphics.draw(gTextures['flags-and-poles'], gFrames['poles'][1], 36, 4) -- 36, 4
+        --love.graphics.draw(gTextures['flags-and-poles'], gFrames['flags-and-poles'][1], 44, 4)
+        
+        --love.graphics.draw(gTextures['flags-and-poles'], gFrames['poles'][1], TILE_SIZE*99, VIRTUAL_HEIGHT-4*TILE_SIZE) -- 36, 4
+        --love.graphics.draw(gTextures['flags-and-poles'], gFrames['flags'][7], TILE_SIZE*99 + 8, VIRTUAL_HEIGHT-4*TILE_SIZE) -- 44, 4
     --end
 
 end

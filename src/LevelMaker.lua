@@ -193,6 +193,39 @@ function LevelMaker.generate(width, height)
                             -- Tween the alpha of the lock so it's disappearance looks nice
                             Timer.tween(1, {[object] = {transitionAlpha = 0}  })
                             unlockedLock = true
+
+
+                            local flagpole = GameObject {
+                                        texture = 'flags-and-poles',
+                                        x = (x - 1) * TILE_SIZE,
+                                        y = (blockHeight - 1) * TILE_SIZE - 4,
+                                        width = 16,
+                                        height = 48,
+                                        frame = 2,
+                                        collidable = false,
+                                        consumable = false,
+                                        solid = false,
+
+                                        -- gem has its own function to add to the player's score
+                                        --onConsume = function(player, object)
+                                        --    gSounds['pickup']:play()
+                                        --    player.score = player.score + 100
+                                        --end
+                                    }
+                                    
+                                    -- make the gem move up from the block and play a sound
+                                    --Timer.tween(0.1, {
+                                    --    [gem] = {y = (blockHeight - 2) * TILE_SIZE}
+                                    --})
+                                    --gSounds['powerup-reveal']:play()
+
+                                    table.insert(objects, flagpole)
+
+
+
+
+
+
                         end
                     }
                 )
