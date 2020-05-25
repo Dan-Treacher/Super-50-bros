@@ -82,8 +82,14 @@ function PlayState:render()
     love.graphics.setColor(255, 255, 255, 255)
     love.graphics.print(tostring(self.player.score), 4, 4)
 
+    -- If the player picks up they key, show the key symbol in the top corner next to the score
     if self.player.hasKey then
         love.graphics.draw(gTextures['keys-and-locks'], gFrames['keys-and-locks'][lockAndKeyColour], 36, 4)
+    end
+
+    -- If the player has unlocked the lock, then show the flagpole symbol in the top corner
+    if unlockedLock then
+        love.graphics.draw(gTextures['flags-and-poles'], gFrames['flags-and-poles'][7], 55, 7)
     end
 
 end

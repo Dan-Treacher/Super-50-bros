@@ -74,21 +74,27 @@ gTextures = {
     ['backgrounds'] = love.graphics.newImage('graphics/backgrounds.png'),
     ['green-alien'] = love.graphics.newImage('graphics/green_alien.png'),
     ['creatures'] = love.graphics.newImage('graphics/creatures.png'),
-    ['keys-and-locks'] = love.graphics.newImage('graphics/keys_and_locks.png')
+    ['keys-and-locks'] = love.graphics.newImage('graphics/keys_and_locks.png'),
+    ['flags-and-poles'] = love.graphics.newImage('graphics/flags.png')
 }
 
 gFrames = {
     ['tiles'] = GenerateQuads(gTextures['tiles'], TILE_SIZE, TILE_SIZE),
-    
     ['toppers'] = GenerateQuads(gTextures['toppers'], TILE_SIZE, TILE_SIZE),
-    
     ['bushes'] = GenerateQuads(gTextures['bushes'], 16, 16),
     ['jump-blocks'] = GenerateQuads(gTextures['jump-blocks'], 16, 16),
     ['gems'] = GenerateQuads(gTextures['gems'], 16, 16),
     ['backgrounds'] = GenerateQuads(gTextures['backgrounds'], 256, 128),
     ['green-alien'] = GenerateQuads(gTextures['green-alien'], 16, 20),
     ['creatures'] = GenerateQuads(gTextures['creatures'], 16, 16),
-    ['keys-and-locks'] = GenerateQuads(gTextures['keys-and-locks'], 16, 16)
+    ['keys-and-locks'] = GenerateQuads(gTextures['keys-and-locks'], 16, 16),
+
+    -- Just split the whole thing up into 16x16 blocks
+    ['flags-and-poles'] = GenerateQuads(gTextures['flags-and-poles'], 16, 16)
+    -- First 6 entries of 'poles' are the legit ones
+    --['poles'] = GenerateQuads(gTextures['flags-and-poles'], 16, 48),  -- The flag poles are 16px wide by 48px tall
+    -- Only the 7,8,9, 16,17,18, 25,26,27, 34,35,36 entries are the legit ones
+    --['flags'] = GenerateQuads(gTextures['flags-and-poles'], 16, 16)
 }
 
 -- these need to be added after gFrames is initialized because they refer to gFrames from within

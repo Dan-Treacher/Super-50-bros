@@ -24,6 +24,8 @@ function LevelMaker.generate(width, height)
     local spawnedLock = false
     local spawnedKey = false
     lockAndKeyColour = math.random(4)  -- Randomised colour of the lock and key pair
+    unlockedLock = false
+
 
     -- insert blank tables into tiles for later access
     for x = 1, height do
@@ -119,10 +121,8 @@ function LevelMaker.generate(width, height)
                                 object.solid = false
                                 gSounds['pickup']:play()
                                 -- Tween the alpha of the lock so it's disappearance looks nice
-                                Timer.tween(1, {
-                                [object] = {transitionAlpha = 0}
-                                })
-                            
+                                Timer.tween(1, {[object] = {transitionAlpha = 0}})
+                                unlockedLock = true
                             end
                         }
                     )
@@ -191,10 +191,91 @@ function LevelMaker.generate(width, height)
                             object.solid = false
                             gSounds['pickup']:play()
                             -- Tween the alpha of the lock so it's disappearance looks nice
-                            Timer.tween(1, {
-                            [object] = {transitionAlpha = 0}
-                            })
-                            
+                            Timer.tween(1, {[object] = {transitionAlpha = 0}  })
+                            unlockedLock = true
+                            local flagDisplacement = width + math.random(-60, -20)  -- Distance the flag pole will be from the end of the screen
+
+                            -- Add the three parts of the flagpole
+                            local flagpole_top = GameObject {
+                                        texture = 'flags-and-poles',
+                                        x = (width - flagDisplacement) * TILE_SIZE,
+                                        y = (blockHeight - 1) * TILE_SIZE,
+                                        width = 16,
+                                        height = 16,
+                                        frame = 2,
+                                        collidable = false,
+                                        consumable = true,  -- If consumable is true, then you have to define the onConsume function
+                                        -- but if consumable is true, the texture never appears...
+                                        solid = false,
+
+                                        -- gem has its own function to add to the player's score
+                                        onConsume = function(player, object)
+                                            gSounds['pickup']:play()
+                                            --player.score = player.score + 1000
+                                        end
+                                    }
+                                    table.insert(objects, flagpole_top)
+                            local flagpole_mid = GameObject {
+                                        texture = 'flags-and-poles',
+                                        x = (width - flagDisplacement) * TILE_SIZE,
+                                        y = (blockHeight - 0) * TILE_SIZE,
+                                        width = 16,
+                                        height = 16,
+                                        frame = 11,
+                                        collidable = false,
+                                        consumable = true,  -- If consumable is true, then you have to define the onConsume function
+                                        -- but if consumable is true, the texture never appears...
+                                        solid = false,
+
+                                        -- gem has its own function to add to the player's score
+                                        onConsume = function(player, object)
+                                            gSounds['pickup']:play()
+                                            --player.score = player.score + 1000
+                                        end
+                                    }
+                                    table.insert(objects, flagpole_mid)
+                            local flagpole_base = GameObject {
+                                        texture = 'flags-and-poles',
+                                        x = (width - flagDisplacement) * TILE_SIZE,
+                                        y = (blockHeight + 1) * TILE_SIZE,
+                                        width = 16,
+                                        height = 16,
+                                        frame = 20,
+                                        collidable = false,
+                                        consumable = true,  -- If consumable is true, then you have to define the onConsume function
+                                        -- but if consumable is true, the texture never appears...
+                                        solid = false,
+
+                                        -- gem has its own function to add to the player's score
+                                        onConsume = function(player, object)
+                                            gSounds['pickup']:play()
+                                            --player.score = player.score + 1000
+                                        end
+                                    }
+                                    table.insert(objects, flagpole_base)
+                            local flagpole_flag = GameObject {
+                                        texture = 'flags-and-poles',
+                                        x = (width - flagDisplacement) * TILE_SIZE + 8,
+                                        y = (blockHeight - 1) * TILE_SIZE,
+                                        width = 16,
+                                        height = 16,
+                                        frame = 7,
+                                        collidable = false,
+                                        consumable = true,  -- If consumable is true, then you have to define the onConsume function
+                                        -- but if consumable is true, the texture never appears...
+                                        solid = false,
+
+                                        -- gem has its own function to add to the player's score
+                                        onConsume = function(player, object)
+                                            gSounds['pickup']:play()
+                                            --player.score = player.score + 1000
+                                        end
+                                    }
+                                    table.insert(objects, flagpole_flag)
+
+
+
+
                         end
                     }
                 )
