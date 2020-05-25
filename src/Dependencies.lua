@@ -89,10 +89,14 @@ gFrames = {
     ['creatures'] = GenerateQuads(gTextures['creatures'], 16, 16),
     ['keys-and-locks'] = GenerateQuads(gTextures['keys-and-locks'], 16, 16),
 
-    -- need to subset this down to the parts picked out correctly
+    -- First 6 entries of 'poles' are the legit ones
     ['poles'] = GenerateQuads(gTextures['flags-and-poles'], 16, 48),  -- The flag poles are 16px wide by 48px tall
+    -- Only the 7,8,9, 16,17,18, 25,26,27, 34,35,36 entries are the legit ones
     ['flags'] = GenerateQuads(gTextures['flags-and-poles'], 16, 16)
 }
+
+gFrames['poles-only'] = GenerateTileSets(gFrames['poles'], 6, 1, 1, 1)
+gFrames['flags-only'] = GenerateTileSets(gFrames['flags'], 9, 4, 1, 1)
 
 -- these need to be added after gFrames is initialized because they refer to gFrames from within
 gFrames['tilesets'] = GenerateTileSets(gFrames['tiles'], 

@@ -86,6 +86,10 @@ function PlayState:render()
         love.graphics.draw(gTextures['keys-and-locks'], gFrames['keys-and-locks'][lockAndKeyColour], 36, 4)
     end
 
+    if unlockedLock then
+        love.graphics.draw(gTextures['flags-and-poles'], gFrames['poles-only'][1][2], 36, 4)
+    end
+
 end
 
 function PlayState:updateCamera()

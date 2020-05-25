@@ -24,6 +24,8 @@ function LevelMaker.generate(width, height)
     local spawnedLock = false
     local spawnedKey = false
     lockAndKeyColour = math.random(4)  -- Randomised colour of the lock and key pair
+    unlockedLock = false
+
 
     -- insert blank tables into tiles for later access
     for x = 1, height do
@@ -119,10 +121,8 @@ function LevelMaker.generate(width, height)
                                 object.solid = false
                                 gSounds['pickup']:play()
                                 -- Tween the alpha of the lock so it's disappearance looks nice
-                                Timer.tween(1, {
-                                [object] = {transitionAlpha = 0}
-                                })
-                            
+                                Timer.tween(1, {[object] = {transitionAlpha = 0}})
+                                unlockedLock = true
                             end
                         }
                     )
@@ -191,10 +191,8 @@ function LevelMaker.generate(width, height)
                             object.solid = false
                             gSounds['pickup']:play()
                             -- Tween the alpha of the lock so it's disappearance looks nice
-                            Timer.tween(1, {
-                            [object] = {transitionAlpha = 0}
-                            })
-                            
+                            Timer.tween(1, {[object] = {transitionAlpha = 0}  })
+                            unlockedLock = true
                         end
                     }
                 )
