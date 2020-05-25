@@ -129,7 +129,7 @@ function LevelMaker.generate(width, height)
                             local flagpole_top = GameObject {
                                         texture = 'flags-and-poles',
                                         x = (width - flagDisplacement) * TILE_SIZE,
-                                        y = (blockHeight - 1) * TILE_SIZE,
+                                        y = (blockHeight + 1) * TILE_SIZE,
                                         width = 16,
                                         height = 16,
                                         frame = 2,
@@ -148,7 +148,7 @@ function LevelMaker.generate(width, height)
                             local flagpole_mid = GameObject {
                                         texture = 'flags-and-poles',
                                         x = (width - flagDisplacement) * TILE_SIZE,
-                                        y = (blockHeight - 0) * TILE_SIZE,
+                                        y = (blockHeight + 2) * TILE_SIZE,
                                         width = 16,
                                         height = 16,
                                         frame = 11,
@@ -167,7 +167,7 @@ function LevelMaker.generate(width, height)
                             local flagpole_base = GameObject {
                                         texture = 'flags-and-poles',
                                         x = (width - flagDisplacement) * TILE_SIZE,
-                                        y = (blockHeight + 1) * TILE_SIZE,
+                                        y = (blockHeight + 3) * TILE_SIZE,
                                         width = 16,
                                         height = 16,
                                         frame = 20,
@@ -185,7 +185,7 @@ function LevelMaker.generate(width, height)
                             local flagpole_flag = GameObject {
                                         texture = 'flags-and-poles',
                                         x = (width - flagDisplacement) * TILE_SIZE + 8,
-                                        y = (blockHeight - 1) * TILE_SIZE,
+                                        y = (blockHeight + 1) * TILE_SIZE,
                                         width = 16,
                                         height = 16,
                                         frame = 7,
