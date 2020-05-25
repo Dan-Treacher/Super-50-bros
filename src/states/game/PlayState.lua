@@ -7,7 +7,7 @@
 
 PlayState = Class{__includes = BaseState}
 
-function PlayState:init()
+function PlayState:init(params)
     self.camX = 0
     self.camY = 0
     self.level = LevelMaker.generate(100, 10)
