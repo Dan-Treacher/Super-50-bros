@@ -193,12 +193,13 @@ function LevelMaker.generate(width, height)
                             -- Tween the alpha of the lock so it's disappearance looks nice
                             Timer.tween(1, {[object] = {transitionAlpha = 0}  })
                             unlockedLock = true
+                            local flagDisplacement = width + math.random(-60, -20)  -- Distance the flag pole will be from the end of the screen
 
-
-                            local flagpole = GameObject {
+                            -- Add the three parts of the flagpole
+                            local flagpole_top = GameObject {
                                         texture = 'flags-and-poles',
-                                        x = (x + 1) * TILE_SIZE,
-                                        y = (blockHeight - 2) * TILE_SIZE - 4,
+                                        x = (width - flagDisplacement) * TILE_SIZE,
+                                        y = (blockHeight - 1) * TILE_SIZE,
                                         width = 16,
                                         height = 16,
                                         frame = 2,
@@ -210,19 +211,67 @@ function LevelMaker.generate(width, height)
                                         -- gem has its own function to add to the player's score
                                         onConsume = function(player, object)
                                             gSounds['pickup']:play()
-                                            player.score = player.score + 1000
+                                            --player.score = player.score + 1000
                                         end
                                     }
-                                    
-                                    -- make the gem move up from the block and play a sound
-                                    --Timer.tween(0.1, {
-                                    --    [gem] = {y = (blockHeight - 2) * TILE_SIZE}
-                                    --})
-                                    --gSounds['powerup-reveal']:play()
+                                    table.insert(objects, flagpole_top)
+                            local flagpole_mid = GameObject {
+                                        texture = 'flags-and-poles',
+                                        x = (width - flagDisplacement) * TILE_SIZE,
+                                        y = (blockHeight - 0) * TILE_SIZE,
+                                        width = 16,
+                                        height = 16,
+                                        frame = 11,
+                                        collidable = false,
+                                        consumable = true,  -- If consumable is true, then you have to define the onConsume function
+                                        -- but if consumable is true, the texture never appears...
+                                        solid = false,
 
-                                    table.insert(objects, flagpole)
+                                        -- gem has its own function to add to the player's score
+                                        onConsume = function(player, object)
+                                            gSounds['pickup']:play()
+                                            --player.score = player.score + 1000
+                                        end
+                                    }
+                                    table.insert(objects, flagpole_mid)
+                            local flagpole_base = GameObject {
+                                        texture = 'flags-and-poles',
+                                        x = (width - flagDisplacement) * TILE_SIZE,
+                                        y = (blockHeight + 1) * TILE_SIZE,
+                                        width = 16,
+                                        height = 16,
+                                        frame = 20,
+                                        collidable = false,
+                                        consumable = true,  -- If consumable is true, then you have to define the onConsume function
+                                        -- but if consumable is true, the texture never appears...
+                                        solid = false,
 
+                                        -- gem has its own function to add to the player's score
+                                        onConsume = function(player, object)
+                                            gSounds['pickup']:play()
+                                            --player.score = player.score + 1000
+                                        end
+                                    }
+                                    table.insert(objects, flagpole_base)
+                            local flagpole_flag = GameObject {
+                                        texture = 'flags-and-poles',
+                                        x = (width - flagDisplacement) * TILE_SIZE + 8,
+                                        y = (blockHeight - 1) * TILE_SIZE,
+                                        width = 16,
+                                        height = 16,
+                                        frame = 7,
+                                        collidable = false,
+                                        consumable = true,  -- If consumable is true, then you have to define the onConsume function
+                                        -- but if consumable is true, the texture never appears...
+                                        solid = false,
 
+                                        -- gem has its own function to add to the player's score
+                                        onConsume = function(player, object)
+                                            gSounds['pickup']:play()
+                                            --player.score = player.score + 1000
+                                        end
+                                    }
+                                    table.insert(objects, flagpole_flag)
 
 
 
