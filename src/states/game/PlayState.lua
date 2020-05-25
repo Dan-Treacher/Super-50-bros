@@ -37,6 +37,14 @@ function PlayState:init(params)
     self.player:changeState('falling')
 end
 
+function PlayState:enter(params)
+    if self.player.score == nil then
+        self.player.score = 0
+    else
+        self.player.score = params.score
+    end
+end
+
 function PlayState:update(dt)
     Timer.update(dt)
 

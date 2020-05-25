@@ -141,7 +141,7 @@ function LevelMaker.generate(width, height)
                                         -- gem has its own function to add to the player's score
                                         onConsume = function(player, object)
                                             gSounds['pickup']:play()
-                                            gStateMachine:change('play')
+                                            gStateMachine:change('play', {score = player.score, newLevelWidth = math.floor(1.1*width)})
                                         end
                                     }
                                     table.insert(objects, flagpole_top)
@@ -160,7 +160,7 @@ function LevelMaker.generate(width, height)
                                         -- gem has its own function to add to the player's score
                                         onConsume = function(player, object)
                                             gSounds['pickup']:play()
-                                            gStateMachine:change('play')
+                                            gStateMachine:change('play', {score = player.score, newLevelWidth = math.floor(1.1*width)})
                                         end
                                     }
                                     table.insert(objects, flagpole_mid)
@@ -178,7 +178,7 @@ function LevelMaker.generate(width, height)
 
                                         onConsume = function(player, object)
                                             gSounds['pickup']:play()
-                                            gStateMachine:change('play')
+                                            gStateMachine:change('play', {score = player.score, newLevelWidth = math.floor(1.1*width)})
                                         end
                                     }
                                     table.insert(objects, flagpole_base)
@@ -196,7 +196,7 @@ function LevelMaker.generate(width, height)
 
                                         onConsume = function(player, object)
                                             gSounds['pickup']:play()
-                                            gStateMachine:change('play')
+                                            gStateMachine:change('play', {score = player.score, newLevelWidth = math.floor(1.1*width)})
                                         end
                                     }
                                 table.insert(objects, flagpole_flag)
@@ -288,7 +288,7 @@ function LevelMaker.generate(width, height)
                                         -- gem has its own function to add to the player's score
                                         onConsume = function(player, object)
                                             gSounds['pickup']:play()
-                                            gStateMachine:change('play')
+                                            gStateMachine:change('play', {score = player.score, newLevelWidth = math.floor(1.1*width)})
                                         end
                                     }
                                     table.insert(objects, flagpole_top)
@@ -307,7 +307,7 @@ function LevelMaker.generate(width, height)
                                         -- gem has its own function to add to the player's score
                                         onConsume = function(player, object)
                                             gSounds['pickup']:play()
-                                            gStateMachine:change('play')
+                                            gStateMachine:change('play', {score = player.score, newLevelWidth = math.floor(1.1*width)})
                                         end
                                     }
                                     table.insert(objects, flagpole_mid)
@@ -325,7 +325,7 @@ function LevelMaker.generate(width, height)
 
                                         onConsume = function(player, object)
                                             gSounds['pickup']:play()
-                                            gStateMachine:change('play')
+                                            gStateMachine:change('play', {score = player.score, newLevelWidth = math.floor(1.1*width)})
                                         end
                                     }
                                     table.insert(objects, flagpole_base)
@@ -343,7 +343,7 @@ function LevelMaker.generate(width, height)
 
                                         onConsume = function(player, object)
                                             gSounds['pickup']:play()
-                                            gStateMachine:change('play')
+                                            gStateMachine:change('play', {score = player.score, newLevelWidth = math.floor(1.1*width)})
                                         end
                                     }
                                     table.insert(objects, flagpole_flag)
