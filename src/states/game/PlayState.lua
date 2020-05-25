@@ -7,7 +7,7 @@
 
 PlayState = Class{__includes = BaseState}
 
-function PlayState:init()
+function PlayState:init(params)
     self.camX = 0
     self.camY = 0
     self.level = LevelMaker.generate(100, 10)
@@ -35,6 +35,14 @@ function PlayState:init()
     self:spawnEnemies()
 
     self.player:changeState('falling')
+end
+
+function PlayState:enter(params)
+    if self.player.score == nil then
+        self.player.score = 0
+    else
+        self.player.score = params.score
+    end
 end
 
 function PlayState:update(dt)
